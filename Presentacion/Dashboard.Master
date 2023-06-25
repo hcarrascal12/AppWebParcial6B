@@ -1,0 +1,106 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.master.cs" Inherits="Presentacion.Dashboard" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        <asp:ContentPlaceHolder ID="title" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+    <link href="~/estilos.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server" class="vh-100">
+        <div class="d-flex flex-column vh-100">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container">
+                    <a class="navbar-brand" href="#">SysLib</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hlInicio" NavigateUrl="~/frmAdmin.aspx" CssClass='<%# this.GetHyperLinkClass("frmAdmin.aspx", "nav-link") %>' runat="server"><i class="fa-solid fa-home"></i> Inicio</asp:HyperLink>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <asp:HyperLink CssClass="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" role="button" ID="hlPersonas" runat="server"><i class="fa-solid fa-users"></i> Personas</asp:HyperLink>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <asp:HyperLink ID="hlUsuarios" NavigateUrl="~/frmUsuarios.aspx" CssClass='<%# this.GetHyperLinkClass("frmUsuarios.aspx", "dropdown-item") %>' runat="server">Usuarios</asp:HyperLink>
+                                        <asp:HyperLink ID="hlLectores" NavigateUrl="~/frmLectores.aspx" CssClass='<%# this.GetHyperLinkClass("frmLectores.aspx", "dropdown-item") %>' runat="server">Lectores</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <asp:HyperLink CssClass="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" role="button" ID="hlBiblioteca" runat="server"><i class="fa-solid fa-book"></i> Biblioteca</asp:HyperLink>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <asp:HyperLink ID="hlLibros" class="dropdown-item" runat="server">Libros</asp:HyperLink>
+                                        <asp:HyperLink ID="hlEditorial" class="dropdown-item" runat="server">Editorial</asp:HyperLink>
+                                        <asp:HyperLink ID="hlAutores" class="dropdown-item" runat="server">Autores</asp:HyperLink>
+                                        <asp:HyperLink ID="hlCategorias" NavigateUrl="~/frmCategorias.aspx" CssClass='<%# this.GetHyperLinkClass("frmCategorias.aspx", "dropdown-item") %>'  runat="server">Categorias</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-handshake"></i>Prestamos
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink10" class="dropdown-item" runat="server">Prestar libro</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink11" class="dropdown-item" runat="server">Listado</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <asp:Button ID="btnCerrarSesion" OnClick="btnCerrarSesion_Click" runat="server" class="dropdown-item" Text="Cerrar sesión" /></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="flex-grow-1">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <footer style="padding: 10px 20px 0px 20px;"
+                class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <div class="container">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <span class="mb-3 mb-md-0 text-body-secondary">
+                            <asp:Label ID="lblCurrentYear" runat="server" Text=""></asp:Label>
+                            Derechos reservados</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <script src="funciones.js"></script>
+    </form>
+
+</body>
+</html>
