@@ -43,7 +43,8 @@ namespace Presentacion
                 hlBiblioteca.CssClass = hlBiblioteca.CssClass + " active";
             }
 
-            if (rutaActual.Equals("/frmPrestarLibro.aspx", StringComparison.OrdinalIgnoreCase))
+            if (rutaActual.Equals("/frmPrestarLibro.aspx", StringComparison.OrdinalIgnoreCase) ||
+                rutaActual.Equals("/frmPrestamos.aspx", StringComparison.OrdinalIgnoreCase))
             {
                 hlPrestamos.CssClass = hlBiblioteca.CssClass + " active";
             }

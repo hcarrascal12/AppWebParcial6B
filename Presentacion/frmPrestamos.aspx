@@ -28,9 +28,9 @@
                             </div>
                             <div class="col-lg-4 col-md-12">
                                 <label class="form-label">Lectores</label>
-                                <asp:DropDownList CssClass="form-control" ID="DropDownList2" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="cmbLectores" CssClass="form-control" runat="server"></asp:DropDownList>
                             </div>
-                            <div class="col-lg-4 col-md-12">
+                            <div class="col-lg-4 col-md-12 d-flex align-items-end">
                                 <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary" runat="server">
                                     <i class="fa-solid fa-search"></i> Buscar
                                 </asp:LinkButton>

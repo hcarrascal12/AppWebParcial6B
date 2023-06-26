@@ -78,6 +78,7 @@
     <Content Include="frmLectores.aspx" />
     <Content Include="frmLibros.aspx" />
     <Content Include="frmLogin.aspx" />
+    <Content Include="frmPrestamos.aspx" />
     <Content Include="frmPrestarLibro.aspx" />
     <Content Include="frmUsuarios.aspx" />
     <Content Include="funciones.js" />
@@ -170,6 +171,13 @@
     </Compile>
     <Compile Include="frmLogin.aspx.designer.cs">
       <DependentUpon>frmLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrestamos.aspx.cs">
+      <DependentUpon>frmPrestamos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPrestamos.aspx.designer.cs">
+      <DependentUpon>frmPrestamos.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmPrestarLibro.aspx.cs">
       <DependentUpon>frmPrestarLibro.aspx</DependentUpon>

@@ -65,7 +65,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <asp:HyperLink ID="HyperLink10" NavigateUrl="~/frmPrestarLibro.aspx" CssClass='<%# this.GetHyperLinkClass("frmPrestarLibro.aspx", "dropdown-item") %>' runat="server">Prestar libro</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink11" class="dropdown-item" runat="server">Listado</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink11" NavigateUrl="~/frmPrestamos.aspx" CssClass='<%# this.GetHyperLinkClass("frmPrestamos.aspx", "dropdown-item") %>' runat="server">Listado</asp:HyperLink>
                                     </li>
                                 </ul>
                             </li>

@@ -102,6 +102,24 @@ namespace ReglaNegocio
 
         }
 
+        public static void CargarGrillaPrestamos(GridView pGrilla)
+        {
+            var vSql = "SELECT p.[Id], CASE p.[EstadoPrestamo] WHEN 'A' THEN 'Prestado' WHEN 'I' THEN 'Devuelto' END AS 'EstadoPrestamo',  " +
+                       "l.[N_ide], lb.[Nombre] AS 'NombreLibro', p.[FechaDevolucion], p.[FechaConfirmacionDevolucion] " +
+                       "FROM Prestamo p, Lectores l, Libro lb " +
+                       "WHERE p.[IdLector] = l.[Id] AND p.[IdLibro] = lb.[Id]";
+            var gv = new Grilla();
+            gv.Cargar(pGrilla, vSql, CommandType.Text);
+
+        }
+
+        public static void CargarComboLector(DropDownList pCombo)
+        {
+            var vSql = "SELECT [Id], [Nombre] FROM lectores WHERE estado = 'A'";
+            var cmb = new Combo();
+            cmb.Cargar(pCombo, vSql, CommandType.Text, "Id", "Nombre");
+        }
+
         public bool PrestarLibro()
         {
             bool exitoso = true;
