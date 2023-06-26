@@ -27,7 +27,7 @@
                         <div class="table small">
 
 
-                            <asp:GridView ID="gvCategorias" ShowHeaderWhenEmpty="True" EmptyDataRowStyle-CssClass="text-center" AllowPaging="true" PageSize="10" EmptyDataText="No hay datos disponibles" CssClass="table table-striped table-responsive" runat="server" AutoGenerateColumns="false" OnRowCommand="gvCategorias_RowCommand">
+                            <asp:GridView ID="gvCategorias" ShowHeaderWhenEmpty="True" CssClass="tblCategorias table table-striped table-responsive" runat="server" AutoGenerateColumns="false" OnRowCommand="gvCategorias_RowCommand">
                                 <Columns>
                                     <asp:BoundField DataField="id" HeaderText="Id" />
                                     <asp:BoundField DataField="descripcion" HeaderText="Descripción" />

@@ -13,6 +13,7 @@ namespace Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             Autor.CargarGrilla(gvAutores);
+            ClientScript.RegisterStartupScript(GetType(), "InitializeDatatable", "$(document).ready(function() { $('.tblAutores').prepend($('<thead></thead>').append($('.tblAutores').find('tr:first'))).DataTable({language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'}});; });", true);
         }
 
         protected void btnCrear_Click(object sender, EventArgs e)

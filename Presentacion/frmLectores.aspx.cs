@@ -13,8 +13,13 @@ namespace Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             Lector.CargarGrilla(gvLectores);
+            //Required for jQuery DataTables to work.
+           /* gvLectores.UseAccessibleHeader = true;
+            gvLectores.HeaderRow.TableSection = TableRowSection.TableHeader;*/
+            /*ClientScript.RegisterStartupScript(GetType(), "InitializeDatatable", "$(document).ready(function() { $('#" + gvLectores.ClientID + "').DataTable(); });", true);*/
             Page.DataBind();
-            
+            ClientScript.RegisterStartupScript(GetType(), "InitializeDatatable", "$(document).ready(function() { $('.tblLectores').prepend($('<thead></thead>').append($('.tblLectores').find('tr:first'))).DataTable({language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'}});; });", true);
+
         }
 
         protected void btnCrearLector_Click(object sender, EventArgs e)

@@ -203,6 +203,24 @@ namespace ReglaNegocio
             return numReg;
         }
 
+        public string TraerID(string pNit)
+        {
+            var vSql = "SELECT [Id] " +
+                       "FROM lectores WHERE [N_ide] =?";
+            var datos = "";
+            bd.Conectar();
+            bd.CrearComando(vSql, CommandType.Text);
+            bd.AsignarParametro("?", OleDbType.VarChar, pNit);
+            OleDbDataReader dr = bd.EjecutarConsultaReader();
+            if (dr.Read())
+            {
+                datos = dr["Id"].ToString();
+            }
+            bd.Desconectar();
+            return datos;
+
+        }
+
     }
 
 }

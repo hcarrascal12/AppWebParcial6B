@@ -28,3 +28,44 @@ function asignarDropdownList(pIdTag, pValue) {
         }
     }
 }
+
+
+function asignarDropdownListLibro(pValueAutor, pValueEdicion, pValueEditorial, pValueCategoria) {
+    var cmbAutores = document.getElementById('ContentPlaceHolder1_cmbAutores');
+    var cmbEdicion = document.getElementById('ContentPlaceHolder1_cmbEdicion');
+    var cmbEditorial = document.getElementById('ContentPlaceHolder1_cmbEditorial'); 
+    var cmbCategoria = document.getElementById('ContentPlaceHolder1_cmbCategoria'); 
+
+
+    for (var i = 0; i < cmbAutores.options.length; i++) {
+        var option = cmbAutores.options[i];
+        if (option.value === pValueAutor) {
+            option.selected = true;
+            break;
+        }
+    }
+
+    for (var i = 0; i < cmbEdicion.options.length; i++) {
+        var option = cmbEdicion.options[i];
+        if (option.value === pValueEdicion) {
+            option.selected = true;
+            break;
+        }
+    }
+
+    for (var i = 0; i < cmbEditorial.options.length; i++) {
+        var option = cmbEditorial.options[i];
+        if (option.value === pValueEditorial) {
+            option.selected = true;
+            break;
+        }
+    }
+
+    for (var i = 0; i < cmbCategoria.options.length; i++) {
+        var option = cmbCategoria.options[i];
+        if (option.value === pValueCategoria) {
+            option.selected = true;
+            break;
+        }
+    }
+}

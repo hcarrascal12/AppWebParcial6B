@@ -21,7 +21,7 @@ namespace ReglaNegocio
         public string getCantUsuarios()
         {
             string numUsuarios = string.Empty;
-            var vSql = "SELECT count(*) as 'numReg' FROM usuarios WHERE estado = 'A'";
+            var vSql = "SELECT count(*) as 'numReg' FROM usuarios WHERE [Estado] = 'A'";
             bd.Conectar();
             bd.CrearComando(vSql, CommandType.Text);
             OleDbDataReader dr = bd.EjecutarConsultaReader();
@@ -36,7 +36,7 @@ namespace ReglaNegocio
         public string getCantLectores()
         {
             string numLectores = string.Empty;
-            var vSql = "SELECT count(*) as 'numReg' FROM lectores WHERE estado = 'A'";
+            var vSql = "SELECT count(*) as 'numReg' FROM lectores WHERE [Estado] = 'A'";
             bd.Conectar();
             bd.CrearComando(vSql, CommandType.Text);
             OleDbDataReader dr = bd.EjecutarConsultaReader();
@@ -46,6 +46,36 @@ namespace ReglaNegocio
             }
             bd.Desconectar();
             return numLectores;
+        }
+
+        public string getCantLibros()
+        {
+            string numLibros = string.Empty;
+            var vSql = "SELECT count(*) as 'numReg' FROM libro WHERE [Estado] = 'A'";
+            bd.Conectar();
+            bd.CrearComando(vSql, CommandType.Text);
+            OleDbDataReader dr = bd.EjecutarConsultaReader();
+            if (dr.Read())
+            {
+                numLibros = dr["numReg"].ToString();
+            }
+            bd.Desconectar();
+            return numLibros;
+        }
+
+        public string getCantPrestamos()
+        {
+            string numLibros = string.Empty;
+            var vSql = "SELECT count(*) as 'numReg' FROM prestamo WHERE [EstadoPrestamo] = 'A'";
+            bd.Conectar();
+            bd.CrearComando(vSql, CommandType.Text);
+            OleDbDataReader dr = bd.EjecutarConsultaReader();
+            if (dr.Read())
+            {
+                numLibros = dr["numReg"].ToString();
+            }
+            bd.Desconectar();
+            return numLibros;
         }
     }
 }

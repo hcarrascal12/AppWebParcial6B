@@ -18,8 +18,8 @@ namespace Presentacion
                 lblWelcome.InnerText = "Bienvenido " + Session["nombre"];
                 lblUsuarios.Text = adm.getCantUsuarios();
                 lblLectores.Text = adm.getCantLectores();
-                lblLibros.Text = "0";
-                lblPrestamos.Text = "0";
+                lblLibros.Text = adm.getCantLibros();
+                lblPrestamos.Text = adm.getCantPrestamos();
             }
             
         }

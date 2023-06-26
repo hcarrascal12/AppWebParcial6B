@@ -14,6 +14,7 @@ namespace Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             Categoria.CargarGrilla(gvCategorias);
+            ClientScript.RegisterStartupScript(GetType(), "InitializeDatatable", "$(document).ready(function() { $('.tblCategorias').prepend($('<thead></thead>').append($('.tblCategorias').find('tr:first'))).DataTable({language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'}});; });", true);
         }
 
         protected void btnCrear_Click(object sender, EventArgs e)

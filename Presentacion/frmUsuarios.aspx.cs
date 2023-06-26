@@ -17,6 +17,7 @@ namespace Presentacion
         {
 
             Usuario.CargarGrillaUsuarios(gvUsuarios);
+            ClientScript.RegisterStartupScript(GetType(), "InitializeDatatable", "$(document).ready(function() { $('.tblUsuarios').prepend($('<thead></thead>').append($('.tblUsuarios').find('tr:first'))).DataTable({language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'}});; });", true);
             Page.DataBind();
         }
 

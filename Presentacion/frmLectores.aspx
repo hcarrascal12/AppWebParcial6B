@@ -27,7 +27,7 @@
                         <div class="table small">
 
 
-                            <asp:GridView ID="gvLectores" ShowHeaderWhenEmpty="True" EmptyDataRowStyle-CssClass="text-center" AllowPaging="true" PageSize="10" EmptyDataText="No hay datos disponibles" CssClass="table table-striped table-responsive" runat="server" AutoGenerateColumns="false" OnRowCommand="gvLectores_RowCommand">
+                            <asp:GridView ID="gvLectores"  ShowHeaderWhenEmpty="True" CssClass="tblLectores table table-striped table-responsive" runat="server" AutoGenerateColumns="false" OnRowCommand="gvLectores_RowCommand">
                                 <Columns>
                                     <asp:BoundField DataField="id" HeaderText="Id" />
                                     <asp:BoundField DataField="n_ide" HeaderText="Nit" />

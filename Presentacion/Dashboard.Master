@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="~/estilos.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -50,20 +52,19 @@
                                 <asp:HyperLink CssClass="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" role="button" ID="hlBiblioteca" runat="server"><i class="fa-solid fa-book"></i> Biblioteca</asp:HyperLink>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <asp:HyperLink ID="hlLibros" class="dropdown-item" runat="server">Libros</asp:HyperLink>
-                                        <asp:HyperLink ID="hlEditorial" class="dropdown-item" runat="server">Editorial</asp:HyperLink>
-                                        <asp:HyperLink ID="hlAutores" class="dropdown-item" runat="server">Autores</asp:HyperLink>
+                                        <asp:HyperLink ID="hlLibros" NavigateUrl="~/frmLibros.aspx" CssClass='<%# this.GetHyperLinkClass("frmLibros.aspx", "dropdown-item") %>'  runat="server">Libros</asp:HyperLink>
+                                        <asp:HyperLink ID="hlEditorial" NavigateUrl="~/frmEditorial.aspx" CssClass='<%# this.GetHyperLinkClass("frmEditorial.aspx", "dropdown-item") %>' runat="server">Editorial</asp:HyperLink>
+                                        <asp:HyperLink ID="hlAutores" NavigateUrl="~/frmAutores.aspx" class="dropdown-item" CssClass='<%# this.GetHyperLinkClass("frmAutores.aspx", "dropdown-item") %>' runat="server">Autores</asp:HyperLink>
                                         <asp:HyperLink ID="hlCategorias" NavigateUrl="~/frmCategorias.aspx" CssClass='<%# this.GetHyperLinkClass("frmCategorias.aspx", "dropdown-item") %>'  runat="server">Categorias</asp:HyperLink>
                                     </li>
                                 </ul>
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-handshake"></i>Prestamos
-                                </a>
+                                <asp:HyperLink CssClass="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" role="button" ID="hlPrestamos" runat="server"><i class="fa-solid fa-handshake"></i>Prestamos</asp:HyperLink>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <asp:HyperLink ID="HyperLink10" class="dropdown-item" runat="server">Prestar libro</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink10" NavigateUrl="~/frmPrestarLibro.aspx" CssClass='<%# this.GetHyperLinkClass("frmPrestarLibro.aspx", "dropdown-item") %>' runat="server">Prestar libro</asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink11" class="dropdown-item" runat="server">Listado</asp:HyperLink>
                                     </li>
                                 </ul>
@@ -97,8 +98,11 @@
             </footer>
         </div>
         <!-- JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
         <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="funciones.js"></script>
     </form>
 

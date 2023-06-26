@@ -72,9 +72,13 @@
     <Content Include="frmAutores.aspx" />
     <Content Include="frmCategorias.aspx" />
     <Content Include="frmCrudLector.aspx" />
+    <Content Include="frmCrudLibro.aspx" />
     <Content Include="frmCrudUsuario.aspx" />
+    <Content Include="frmEditorial.aspx" />
     <Content Include="frmLectores.aspx" />
+    <Content Include="frmLibros.aspx" />
     <Content Include="frmLogin.aspx" />
+    <Content Include="frmPrestarLibro.aspx" />
     <Content Include="frmUsuarios.aspx" />
     <Content Include="funciones.js" />
     <Content Include="Global.asax" />
@@ -125,12 +129,26 @@
     <Compile Include="frmCrudLector.aspx.designer.cs">
       <DependentUpon>frmCrudLector.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmCrudLibro.aspx.cs">
+      <DependentUpon>frmCrudLibro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCrudLibro.aspx.designer.cs">
+      <DependentUpon>frmCrudLibro.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmCrudUsuario.aspx.cs">
       <DependentUpon>frmCrudUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="frmCrudUsuario.aspx.designer.cs">
       <DependentUpon>frmCrudUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditorial.aspx.cs">
+      <DependentUpon>frmEditorial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmEditorial.aspx.designer.cs">
+      <DependentUpon>frmEditorial.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmLectores.aspx.cs">
       <DependentUpon>frmLectores.aspx</DependentUpon>
@@ -139,12 +157,26 @@
     <Compile Include="frmLectores.aspx.designer.cs">
       <DependentUpon>frmLectores.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmLibros.aspx.cs">
+      <DependentUpon>frmLibros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLibros.aspx.designer.cs">
+      <DependentUpon>frmLibros.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.aspx.cs">
       <DependentUpon>frmLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="frmLogin.aspx.designer.cs">
       <DependentUpon>frmLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrestarLibro.aspx.cs">
+      <DependentUpon>frmPrestarLibro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPrestarLibro.aspx.designer.cs">
+      <DependentUpon>frmPrestarLibro.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmUsuarios.aspx.cs">
       <DependentUpon>frmUsuarios.aspx</DependentUpon>

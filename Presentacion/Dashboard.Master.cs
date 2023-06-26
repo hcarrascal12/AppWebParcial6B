@@ -25,6 +25,7 @@ namespace Presentacion
             string rutaActual = Request.Url.AbsolutePath;
             hlPersonas.CssClass = "nav-link dropdown-toggle";
             hlBiblioteca.CssClass = "nav-link dropdown-toggle";
+            hlPrestamos.CssClass = "nav-link dropdown-toggle";
 
             if (rutaActual.Equals("/frmUsuarios.aspx", StringComparison.OrdinalIgnoreCase) || 
                 rutaActual.Equals("/frmCrudUsuario.aspx", StringComparison.OrdinalIgnoreCase) ||
@@ -34,9 +35,17 @@ namespace Presentacion
                 hlPersonas.CssClass = hlPersonas.CssClass + " active";   
             }
 
-            if (rutaActual.Equals("/frmCategorias.aspx", StringComparison.OrdinalIgnoreCase))
+            if (rutaActual.Equals("/frmCategorias.aspx", StringComparison.OrdinalIgnoreCase) ||
+                rutaActual.Equals("/frmAutores.aspx", StringComparison.OrdinalIgnoreCase) ||
+                rutaActual.Equals("/frmEditorial.aspx", StringComparison.OrdinalIgnoreCase) ||
+                rutaActual.Equals("/frmLibros.aspx", StringComparison.OrdinalIgnoreCase))
             {
                 hlBiblioteca.CssClass = hlBiblioteca.CssClass + " active";
+            }
+
+            if (rutaActual.Equals("/frmPrestarLibro.aspx", StringComparison.OrdinalIgnoreCase))
+            {
+                hlPrestamos.CssClass = hlBiblioteca.CssClass + " active";
             }
 
         }
