@@ -21,6 +21,11 @@ namespace ReglaNegocio
                 bd = new BaseDeDato();
         } 
 
+        public BaseDeDato Bd
+        {
+            get { return this.bd; }
+        }
+
         public int Id
         {
             set { this.id = value;}

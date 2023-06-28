@@ -22,15 +22,15 @@ namespace Presentacion
             var usuario = new Usuario();
             ListItem valorSeleccionado;
             List<string> datos;
+            vSql = "SELECT [Id], [Nombre] FROM tipo_usuario";
+            Usuario.CargarCombo(cmbTipoUsuario, vSql);
 
             if (!Page.IsPostBack)
             {
 
                 if (Request.QueryString["id"] != null)
-                {
-                    cmbTipoUsuario.Items.Clear();
-                    vSql = "SELECT [Id], [Nombre] FROM tipo_usuario";
-                    Usuario.CargarCombo(cmbTipoUsuario, vSql);
+                { 
+                    
                     sID = int.Parse(Request.QueryString["id"]);
                     datos = usuario.Consultar(sID);
                     txtUsuario.Text = datos[0];

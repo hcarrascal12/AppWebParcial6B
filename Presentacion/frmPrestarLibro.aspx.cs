@@ -39,7 +39,7 @@ namespace Presentacion
             }
                 Prestamo.CargarGrillaLibros(gvLibros);
                 Prestamo.CargarGrillaLector(gvLector);
-                ClientScript.RegisterStartupScript(GetType(), "InitializeDatatable", "$(document).ready(function() { $('.datepicker').datepicker({dateFormat: 'dd/mm/yy', language: 'es'}); $('.tblLibros').prepend($('<thead></thead>').append($('.tblLibros').find('tr:first'))).DataTable({language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'}}); $('.tblLector').prepend($('<thead></thead>').append($('.tblLector').find('tr:first'))).DataTable({language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'}}); });", true);
+                ClientScript.RegisterStartupScript(GetType(), "InitializeDatatable", "$(document).ready(function() { $('.datepicker').datepicker({dateFormat: 'dd/mm/yy', language: 'es'}); $('.tblLibros').prepend($('<thead></thead>').append($('.tblLibros').find('tr:first'))).DataTable({language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'}}); $('.tblLector').prepend($('<thead></thead>').append($('.tblLector').find('tr:first'))).DataTable({language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'}}); $('.tblLector thead tr th').addClass('text-center'); $('.tblLibros thead tr th').addClass('text-center'); });", true);
             
         }
 

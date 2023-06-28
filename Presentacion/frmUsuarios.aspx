@@ -26,7 +26,7 @@
                         <div class="table small">
 
 
-                            <asp:GridView ID="gvUsuarios" ShowHeaderWhenEmpty="True" CssClass="tblUsuarios table table-striped table-responsive" runat="server" AutoGenerateColumns="false" OnRowCommand="gvUsuarios_RowCommand">
+                            <asp:GridView ID="gvUsuarios" ShowHeaderWhenEmpty="True" CssClass="tblUsuarios table table-striped table-responsive" runat="server" AutoGenerateColumns="false" OnRowCommand="gvUsuarios_RowCommand" OnRowDataBound="gvUsuarios_RowDataBound">
                                 <Columns>
                                     <asp:BoundField DataField="id" HeaderText="Id" />
                                     <asp:BoundField DataField="username" HeaderText="Usuario" />

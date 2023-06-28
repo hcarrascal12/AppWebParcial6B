@@ -87,6 +87,7 @@ namespace Presentacion
             libro.IdEditorial = int.Parse(cmbEditorial.SelectedValue);
             libro.IdCategoria = int.Parse(cmbCategoria.SelectedValue);
             libro.Estado = "A";
+            libro.Disponible = "S";
 
             numReg = libro.Insertar();
 

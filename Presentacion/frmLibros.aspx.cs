@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Presentacion
@@ -13,7 +14,7 @@ namespace Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             Libro.CargarGrilla(gvLibros);
-            ClientScript.RegisterStartupScript(GetType(), "InitializeDatatable", "$(document).ready(function() { $('.tblLibros').prepend($('<thead></thead>').append($('.tblLibros').find('tr:first'))).DataTable({language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'}});; });", true);
+            ClientScript.RegisterStartupScript(GetType(), "InitializeDatatable", "$(document).ready(function() { $('.tblLibros').prepend($('<thead></thead>').append($('.tblLibros').find('tr:first'))).DataTable({language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'}}); $('.tblLibros thead tr th').addClass('text-center'); });", true);
         }
 
         protected void btnCrearLibro_Click(object sender, EventArgs e)
@@ -61,6 +62,38 @@ namespace Presentacion
                 lblID.Text = id;
                 ScriptManager.RegisterStartupScript(this, GetType(), "funciones", "showModal('#mdlEliminarLibro');", true);
             }
+        }
+
+        protected void gvLibros_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // Obtener el valor del campo 'Estado'
+                string valor = DataBinder.Eval(e.Row.DataItem, "disponible").ToString();
+                HtmlGenericControl span = new HtmlGenericControl("span");
+
+                // Comprobar si el valor cumple con la condición deseada
+                if (valor.ToUpper() == "SI")
+                {
+                    // Modificar el estilo de la celda correspondiente
+                    span.Attributes["class"] = "bg-success text-white p-2 rounded";
+                }
+                else
+                {
+                    span.Attributes["class"] = "bg-danger text-white p-2 rounded";
+                }
+
+                span.InnerText = valor;
+
+                e.Row.Cells[7].Controls.Add(span);
+
+                TableCell cell = e.Row.Cells[7]; // Índice de la columna
+
+                // Aplicar el estilo CSS para centrar el contenido
+                cell.Style["text-align"] = "center";
+
+            }
+
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ReglaNegocio
     {
         BaseDeDato bd;
         private int id, idautor, idEdicion, idEditorial, idCategoria, bdCodeError;
-        private string isbn, nombre, estado, bdMsgError;
+        private string isbn, nombre, estado, bdMsgError, disponible;
 
         public Libro()
         {
@@ -75,6 +75,12 @@ namespace ReglaNegocio
             get { return this.estado; }
         }
 
+        public string Disponible
+        {
+            set { this.disponible = value; }
+            get { return this.disponible; }
+        }
+
         public string BdMsgError
         {
             set { this.bdMsgError = value; }
@@ -130,7 +136,7 @@ namespace ReglaNegocio
 
         public static void CargarGrilla(GridView pGrilla)
         {
-            var vSql = "SELECT l.[Id], l.[Isbn], l.[Nombre], a.[Descripcion] AS 'Autor', c.[Descripcion] AS 'Categoria', et.[Descripcion] AS 'Editorial', ec.[Descripcion] as 'Edicion' " +
+            var vSql = "SELECT l.[Id], l.[Isbn], l.[Nombre], a.[Descripcion] AS 'Autor', c.[Descripcion] AS 'Categoria', et.[Descripcion] AS 'Editorial', ec.[Descripcion] as 'Edicion', CASE l.[Disponible] WHEN 'S' THEN 'Si' ELSE 'No' END AS 'Disponible' " +
                        "FROM Libro l, autores a, categorias c, editorial et, ediciones ec " +
                        "WHERE l.[Idautor] = a.[Id] AND l.[IdEdicion] = ec.[Id] AND l.[IdEditorial] = et.[Id] AND l.[IdCategoria] = c.[Id] AND " +
                        "l.[estado] = 'A'";
@@ -142,7 +148,7 @@ namespace ReglaNegocio
         public int Insertar()
         {
             int numReg = 0;
-            var vSql = "insert into Libro ([Isbn], [Nombre], [Idautor], [IdEdicion], [IdEditorial], [IdCategoria], [Estado]) values (?,?,?,?,?,?,?)";
+            var vSql = "insert into Libro ([Isbn], [Nombre], [Idautor], [IdEdicion], [IdEditorial], [IdCategoria], [Estado], [Disponible]) values (?,?,?,?,?,?,?,?)";
             bd.Conectar();
             bd.CrearComando(vSql, CommandType.Text);
             bd.AsignarParametro("?", OleDbType.VarChar, this.Isbn);
@@ -152,6 +158,7 @@ namespace ReglaNegocio
             bd.AsignarParametro("?", OleDbType.Integer, this.IdEditorial);
             bd.AsignarParametro("?", OleDbType.Integer, this.IdCategoria);
             bd.AsignarParametro("?", OleDbType.VarChar, this.Estado);
+            bd.AsignarParametro("?", OleDbType.VarChar, this.Disponible);
             numReg = bd.EjecutarComando();
             bd.Desconectar();
             if (numReg <= 0)

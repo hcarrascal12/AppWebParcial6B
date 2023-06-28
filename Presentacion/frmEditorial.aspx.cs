@@ -13,7 +13,7 @@ namespace Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             Editorial.CargarGrilla(gvEditoriales);
-            ClientScript.RegisterStartupScript(GetType(), "InitializeDatatable", "$(document).ready(function() { $('.tblEditorial').prepend($('<thead></thead>').append($('.tblEditorial').find('tr:first'))).DataTable({language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'}});; });", true);
+            ClientScript.RegisterStartupScript(GetType(), "InitializeDatatable", "$(document).ready(function() { $('.tblEditorial').prepend($('<thead></thead>').append($('.tblEditorial').find('tr:first'))).DataTable({language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'}}); $('.tblEditorial thead tr th').addClass('text-center'); });", true);
         }
 
         protected void btnCrear_Click(object sender, EventArgs e)

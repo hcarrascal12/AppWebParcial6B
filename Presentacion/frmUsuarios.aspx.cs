@@ -69,5 +69,27 @@ namespace Presentacion
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "funciones", script, true);
             }
         }
+
+        protected void gvUsuarios_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // Obtener el valor del campo 'Estado'
+                string id = DataBinder.Eval(e.Row.DataItem, "Id").ToString();
+
+                // Encontrar el botón dentro de la fila
+                LinkButton btnEliminar = (LinkButton)e.Row.FindControl("btnEliminar");
+
+                // Verificar el valor del campo y ocultar o mostrar el botón
+                if (id.Equals("10", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    btnEliminar.Visible = false;
+                }
+                else
+                {
+                    btnEliminar.Visible = true;
+                }
+            }
+        }
     }
 }

@@ -24,7 +24,7 @@
                             <i class="fa-solid fa-plus"></i> Crear Libro
                         </asp:LinkButton>
                         <div class="table small">
-                            <asp:GridView ID="gvLibros" ShowHeaderWhenEmpty="True" CssClass="tblLibros table table-striped table-responsive" runat="server" AutoGenerateColumns="false" OnRowCommand="gvLibros_RowCommand">
+                            <asp:GridView ID="gvLibros" ShowHeaderWhenEmpty="True" CssClass="tblLibros table table-striped table-responsive" runat="server" AutoGenerateColumns="false" OnRowCommand="gvLibros_RowCommand" OnRowDataBound="gvLibros_RowDataBound">
                                 <Columns>
                                     <asp:BoundField DataField="id" HeaderText="Id" />
                                     <asp:BoundField DataField="isbn" HeaderText="Isbn" />
@@ -33,6 +33,7 @@
                                     <asp:BoundField DataField="categoria" HeaderText="Categoria" />
                                     <asp:BoundField DataField="editorial" HeaderText="Editorial" />
                                     <asp:BoundField DataField="edicion" HeaderText="Edicion" />
+                                    <asp:BoundField DataField="disponible" HeaderText="Disponible" />
                                     <asp:TemplateField HeaderText="Acciones">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="btnEditar" OnClick="btnEditar_Click" runat="server" CssClass="btn btn-warning" title="Editar libro">

@@ -113,9 +113,50 @@ namespace ReglaNegocio
 
         }
 
+        public void CargarGrillaPrestamosConsulta(GridView pGrilla)
+        {
+            var vSql = "SELECT p.[Id], CASE p.[EstadoPrestamo] WHEN 'A' THEN 'Prestado' WHEN 'I' THEN 'Devuelto' END AS 'EstadoPrestamo',  " +
+                       "l.[N_ide], lb.[Nombre] AS 'NombreLibro', p.[FechaDevolucion], p.[FechaConfirmacionDevolucion] " +
+                       "FROM Prestamo p, Lectores l, Libro lb " +
+                       "WHERE p.[IdLector] = l.[Id] AND p.[IdLibro] = lb.[Id] ";
+
+            if(this.IdLector > 0)
+            {
+                vSql += "AND p.[IdLector] = ? "; 
+            }
+
+            if (!string.Equals(this.EstadoPrestamo, "S", StringComparison.OrdinalIgnoreCase))
+            {
+                vSql += "AND p.[EstadoPrestamo] = ?";
+            }
+
+
+            var gv = new Grilla();
+            gv.Preparar(vSql, CommandType.Text);
+
+            if (this.IdLector > 0)
+            {
+                gv.AsignarParametro("?", OleDbType.Integer, this.IdLector);
+            }
+
+            if (!string.Equals(this.EstadoPrestamo, "S", StringComparison.OrdinalIgnoreCase))
+            {
+                gv.AsignarParametro("?", OleDbType.VarChar, this.EstadoPrestamo);
+            }
+
+            gv.Cargar(pGrilla);
+
+        }
+
         public static void CargarComboLector(DropDownList pCombo)
         {
-            var vSql = "SELECT [Id], [Nombre] FROM lectores WHERE estado = 'A'";
+            var vSql = "SELECT '' id, 'Seleccionar' Nombre " +
+                        "UNION ALL "+
+                        "SELECT * " +
+                        "FROM " +
+                        "(SELECT id, Nombre " +
+                        "FROM lectores " +
+                        "WHERE estado = 'A') lector ";
             var cmb = new Combo();
             cmb.Cargar(pCombo, vSql, CommandType.Text, "Id", "Nombre");
         }
@@ -139,6 +180,29 @@ namespace ReglaNegocio
             return exitoso;
         }
 
+        public bool DevolverLibro()
+        {
+            bool exitoso = true;
+            var numRegDevolucion = 0;
+            var numRegLibro = 0;
+            int idLibro = 0;
+
+            idLibro = this.TraeIdLibro(this.Id);
+            numRegDevolucion = this.ActualizarPrestamo();
+            numRegLibro = this.ActualizarDisponibleLibro(idLibro);
+
+            if (numRegDevolucion <= 0)
+            {
+                exitoso = false;
+            }
+            else if (numRegLibro <= 0)
+            {
+                exitoso = false;
+            }
+
+            return exitoso;
+        }
+
         public int InsertarPrestamo()
         {
             int numReg = 0;
@@ -150,6 +214,30 @@ namespace ReglaNegocio
             bd.AsignarParametro("?", OleDbType.Date, this.FechaDevolucion);
             bd.AsignarParametro("?", OleDbType.VarChar, this.EstadoEntregado);
             bd.AsignarParametro("?", OleDbType.VarChar, this.EstadoPrestamo);
+            numReg = bd.EjecutarComando();
+            bd.Desconectar();
+            if (numReg <= 0)
+            {
+                if (bd.BdCodeError != 0)
+                {
+                    BdCodeError = bd.BdCodeError;
+                    BdMsgError = bd.BdMsgError;
+                }
+            }
+
+            return numReg;
+        }
+
+        public int ActualizarPrestamo()
+        {
+            int numReg = 0;
+            var vSql = "Update Prestamo SET [FechaConfirmacionDevolucion] = ?, [EstadoRecibido] = ?, [EstadoPrestamo] = ? WHERE [Id] = ?";
+            bd.Conectar();
+            bd.CrearComando(vSql, CommandType.Text);
+            bd.AsignarParametro("?", OleDbType.Date, this.FechaConfirmacionDevolucion);
+            bd.AsignarParametro("?", OleDbType.VarChar, this.EstadoRecibido);
+            bd.AsignarParametro("?", OleDbType.VarChar, this.EstadoPrestamo);
+            bd.AsignarParametro("?", OleDbType.Integer, this.Id);
             numReg = bd.EjecutarComando();
             bd.Desconectar();
             if (numReg <= 0)
@@ -184,5 +272,45 @@ namespace ReglaNegocio
 
             return numReg;
         }
+
+        public int ActualizarDisponibleLibro(int pId)
+        {
+            int numReg = 0;
+            var vSql = "Update libro SET [Disponible] = 'S' WHERE [Id] = ?";
+            bd.Conectar();
+            bd.CrearComando(vSql, CommandType.Text);
+            bd.AsignarParametro("?", OleDbType.Integer, pId);
+            numReg = bd.EjecutarComando();
+            bd.Desconectar();
+            if (numReg <= 0)
+            {
+                if (bd.BdCodeError != 0)
+                {
+                    BdCodeError = bd.BdCodeError;
+                    BdMsgError = bd.BdMsgError;
+                }
+            }
+
+            return numReg;
+        }
+
+        public int TraeIdLibro(int intId)
+        {
+            var vSql = "SELECT [IdLibro] " +
+                       "FROM prestamo WHERE [Id] =?";
+            var datos = 0;
+            bd.Conectar();
+            bd.CrearComando(vSql, CommandType.Text);
+            bd.AsignarParametro("?", OleDbType.Integer, intId);
+            OleDbDataReader dr = bd.EjecutarConsultaReader();
+            if (dr.Read())
+            {
+                datos = int.Parse(dr["IdLibro"].ToString());
+            }
+            bd.Desconectar();
+            return datos;
+        }
+
+         
     }
 }
