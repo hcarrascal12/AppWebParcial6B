@@ -81,7 +81,7 @@ namespace Presentacion
                 LinkButton btnEliminar = (LinkButton)e.Row.FindControl("btnEliminar");
 
                 // Verificar el valor del campo y ocultar o mostrar el botón
-                if (id.Equals("10", StringComparison.InvariantCultureIgnoreCase))
+                if (id.Equals("1", StringComparison.InvariantCultureIgnoreCase))
                 {
                     btnEliminar.Visible = false;
                 }

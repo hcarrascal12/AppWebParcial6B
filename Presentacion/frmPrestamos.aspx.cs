@@ -111,7 +111,7 @@ namespace Presentacion
 
             if (devuelto)
             {
-                Limpiar();
+               
                 script = "executeAlertify(true, 'Se ha devuelto el libro exitosamente');";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "funciones", script, true);
                 Response.AppendHeader("Refresh", "3; URL=frmPrestamos.aspx");
